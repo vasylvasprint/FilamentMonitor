@@ -1,0 +1,364 @@
+2026-10-27 10:30:17,364 [INFO] httpx: HTTP Request: GET https://3d-smart.com.ua/filament/ "HTTP/1.1 404 Not Found"
+2026-10-27 10:30:17,368 [WARNING] scrapers.base: [3D Smart] HTTP error for https://3d-smart.com.ua/filament/: Client error '404 Not Found' for url 'https://3d-smart.com.ua/filament/'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-27 10:30:17,368 [INFO] scrapers.smart3d: [3D Smart] Static failed for https://3d-smart.com.ua/filament/, trying Playwright
+2026-10-27 10:30:55,732 [INFO] scrapers.smart3d: [3D Smart] No products on page 1, stopping.
+2026-10-27 10:30:55,733 [INFO] scrapers.smart3d: [3D Smart] Total products scraped: 0
+2026-10-27 10:30:55,733 [INFO] scrapers: [3D Smart] Scraped 0 products
+2026-10-27 10:30:58,248 [WARNING] scrapers.base: [3DPlast] HTTP error for https://3dplast.biz/catalog/: All connection attempts failed
+2026-10-27 10:30:58,249 [WARNING] scrapers.plast3d: [3DPlast] No HTML for https://3dplast.biz/catalog/
+2026-10-27 10:31:00,639 [WARNING] scrapers.base: [3DPlast] HTTP error for https://3dplast.biz/filament-pla/: All connection attempts failed
+2026-10-27 10:31:00,639 [WARNING] scrapers.plast3d: [3DPlast] No HTML for https://3dplast.biz/filament-pla/
+2026-10-27 10:31:03,011 [WARNING] scrapers.base: [3DPlast] HTTP error for https://3dplast.biz/filament-petg/: All connection attempts failed
+2026-10-27 10:31:03,011 [WARNING] scrapers.plast3d: [3DPlast] No HTML for https://3dplast.biz/filament-petg/
+2026-10-27 10:31:05,369 [WARNING] scrapers.base: [3DPlast] HTTP error for https://3dplast.biz/filament-abs/: All connection attempts failed
+2026-10-27 10:31:05,369 [WARNING] scrapers.plast3d: [3DPlast] No HTML for https://3dplast.biz/filament-abs/
+2026-10-27 10:31:05,369 [INFO] scrapers.plast3d: [3DPlast] Total products scraped: 0
+2026-10-27 10:31:05,369 [INFO] scrapers: [3DPlast] Scraped 0 products
+2026-10-27 10:31:32,636 [WARNING] scrapers.daniparts: [Daniparts] No product selectors matched
+2026-10-27 10:31:32,698 [INFO] scrapers: [Daniparts] Scraped 0 products
+2026-10-27 10:31:33,133 [INFO] httpx: HTTP Request: GET https://epic3d.com.ua/plastyk-dlia-3d-pryntera "HTTP/1.1 404 Not Found"
+2026-10-27 10:31:33,134 [WARNING] scrapers.base: [Epic3D] HTTP error for https://epic3d.com.ua/plastyk-dlia-3d-pryntera: Client error '404 Not Found' for url 'https://epic3d.com.ua/plastyk-dlia-3d-pryntera'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-10-27 10:31:33,135 [WARNING] scrapers.epic3d: [Epic3D] No HTML for https://epic3d.com.ua/plastyk-dlia-3d-pryntera
+2026-10-27 10:31:33,135 [INFO] scrapers.epic3d: [Epic3D] Total products scraped: 0
+2026-10-27 10:31:33,135 [INFO] scrapers: [Epic3D] Scraped 0 products
+2026-10-27 10:31:35,625 [INFO] scrapers.filament_org: [Filament.org.ua] Found cards with '.js-product'
+2026-10-27 10:31:37,224 [INFO] scrapers.filament_org: [Filament.org.ua] Found 16 cards with '.js-product'
+2026-10-27 10:31:37,228 [INFO] scrapers.filament_org: [Filament.org.ua] Total products scraped: 0
+2026-10-27 10:31:37,228 [INFO] scrapers: [Filament.org.ua] Scraped 0 products
+2026-10-27 10:31:56,337 [WARNING] scrapers.lbl_corp: [LBL Corp] No product card selectors matched; returning []
+2026-10-27 10:31:56,399 [INFO] scrapers: [LBL Corp] Scraped 0 products
+2026-10-27 10:31:58,142 [INFO] httpx: HTTP Request: GET https://monofilament.com.ua/products/standartnye-materialy/ "HTTP/1.1 200 OK"
+2026-10-27 10:31:58,177 [INFO] scrapers.monofilament: [Monofilament] Found 24 product cards
+2026-10-27 10:31:58,182 [INFO] scrapers.monofilament: [Monofilament] Page 1: 5 products
+2026-10-27 10:31:58,501 [INFO] httpx: HTTP Request: GET https://monofilament.com.ua/products/standartnye-materialy/?&page=2 "HTTP/1.1 302 Found"
+2026-10-27 10:31:59,043 [INFO] httpx: HTTP Request: GET https://monofilament.com.ua/products/standartnye-materialy/?page=2 "HTTP/1.1 200 OK"
+2026-10-27 10:31:59,109 [INFO] scrapers.monofilament: [Monofilament] Found 24 product cards
+2026-10-27 10:31:59,114 [INFO] scrapers.monofilament: [Monofilament] No products on page 2, stopping.
+2026-10-27 10:31:59,982 [INFO] httpx: HTTP Request: GET https://monofilament.com.ua/products/inzhinernye-plastiki/ "HTTP/1.1 200 OK"
+2026-10-27 10:32:00,010 [INFO] scrapers.monofilament: [Monofilament] Found 18 product cards
+2026-10-27 10:32:00,014 [INFO] scrapers.monofilament: [Monofilament] No products on page 1, stopping.
+2026-10-27 10:32:00,014 [INFO] scrapers.monofilament: [Monofilament] Total products scraped: 5
+2026-10-27 10:32:00,014 [INFO] scrapers: [Monofilament] Scraped 5 products
+2026-10-27 10:32:02,006 [INFO] scrapers.plexiwire: [Plexiwire] Found 39 category links
+2026-10-27 10:32:12,822 [INFO] scrapers.plexiwire: [Plexiwire] Found 31 cards with 'div[class*="product"]'
+2026-10-27 10:32:12,834 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/catalog/: 0 products
+2026-10-27 10:32:22,221 [INFO] scrapers.plexiwire: [Plexiwire] Found 11 cards with 'div[class*="product"]'
+2026-10-27 10:32:22,227 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/about-us/: 0 products
+2026-10-27 10:32:31,656 [INFO] scrapers.plexiwire: [Plexiwire] Found 11 cards with 'div[class*="product"]'
+2026-10-27 10:32:31,659 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/payment-delivery/: 0 products
+2026-10-27 10:32:41,055 [INFO] scrapers.plexiwire: [Plexiwire] Found 11 cards with 'div[class*="product"]'
+2026-10-27 10:32:41,061 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/obmen-i-vozvrat/: 0 products
+2026-10-27 10:32:50,446 [INFO] scrapers.plexiwire: [Plexiwire] Found 11 cards with 'div[class*="product"]'
+2026-10-27 10:32:50,451 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/contacts/: 0 products
+2026-10-27 10:32:59,856 [INFO] scrapers.plexiwire: [Plexiwire] Found 11 cards with 'div[class*="product"]'
+2026-10-27 10:32:59,862 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/privacypolicy/: 0 products
+2026-10-27 10:33:09,347 [INFO] scrapers.plexiwire: [Plexiwire] Found 11 cards with 'div[class*="product"]'
+2026-10-27 10:33:09,352 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/blog/: 0 products
+2026-10-27 10:33:18,834 [INFO] scrapers.plexiwire: [Plexiwire] Found 18 cards with 'div[class*="product"]'
+2026-10-27 10:33:18,840 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/store-reviews/: 0 products
+2026-10-27 10:33:28,541 [INFO] scrapers.plexiwire: [Plexiwire] Found 31 cards with 'div[class*="product"]'
+2026-10-27 10:33:28,548 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/ru/: 0 products
+2026-10-27 10:33:43,887 [WARNING] scrapers.plexiwire: [Plexiwire] No product cards found
+2026-10-27 10:33:43,888 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/profile/favorites/: 0 products
+2026-10-27 10:33:53,548 [INFO] scrapers.plexiwire: [Plexiwire] Found 31 cards with 'div[class*="product"]'
+2026-10-27 10:33:53,555 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua#j-popup-tab-auth: 0 products
+2026-10-27 10:34:03,306 [INFO] scrapers.plexiwire: [Plexiwire] Found 31 cards with 'div[class*="product"]'
+2026-10-27 10:34:03,315 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/plexiwire-filament/: 0 products
+2026-10-27 10:34:13,242 [INFO] scrapers.plexiwire: [Plexiwire] Found 27 cards with 'div[class*="product"]'
+2026-10-27 10:34:13,253 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/abs-filament/: 0 products
+2026-10-27 10:34:22,785 [INFO] scrapers.plexiwire: [Plexiwire] Found 21 cards with 'div[class*="product"]'
+2026-10-27 10:34:22,790 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/abs-cf10-filament/: 0 products
+2026-10-27 10:34:32,322 [INFO] scrapers.plexiwire: [Plexiwire] Found 22 cards with 'div[class*="product"]'
+2026-10-27 10:34:32,328 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/abs-plus-filament/: 0 products
+2026-10-27 10:34:41,856 [INFO] scrapers.plexiwire: [Plexiwire] Found 46 cards with 'div[class*="product"]'
+2026-10-27 10:34:41,863 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/asa-filament/: 0 products
+2026-10-27 10:34:51,687 [INFO] scrapers.plexiwire: [Plexiwire] Found 55 cards with 'div[class*="product"]'
+2026-10-27 10:34:51,697 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/pla-filament/: 0 products
+2026-10-27 10:35:01,290 [INFO] scrapers.plexiwire: [Plexiwire] Found 36 cards with 'div[class*="product"]'
+2026-10-27 10:35:01,297 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/pla-glitter-filament/: 0 products
+2026-10-27 10:35:10,739 [INFO] scrapers.plexiwire: [Plexiwire] Found 21 cards with 'div[class*="product"]'
+2026-10-27 10:35:10,743 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/pla-cf10-filament/: 0 products
+2026-10-27 10:35:20,325 [INFO] scrapers.plexiwire: [Plexiwire] Found 34 cards with 'div[class*="product"]'
+2026-10-27 10:35:20,332 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/petg-filament/: 0 products
+2026-10-27 10:35:29,824 [INFO] scrapers.plexiwire: [Plexiwire] Found 16 cards with 'div[class*="product"]'
+2026-10-27 10:35:29,828 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/petg-cf10-filament/: 0 products
+2026-10-27 10:35:39,512 [INFO] scrapers.plexiwire: [Plexiwire] Found 31 cards with 'div[class*="product"]'
+2026-10-27 10:35:39,519 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/pctg/: 0 products
+2026-10-27 10:35:49,098 [INFO] scrapers.plexiwire: [Plexiwire] Found 43 cards with 'div[class*="product"]'
+2026-10-27 10:35:49,111 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/flex-filament/: 0 products
+2026-10-27 10:35:58,684 [INFO] scrapers.plexiwire: [Plexiwire] Found 22 cards with 'div[class*="product"]'
+2026-10-27 10:35:58,691 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/nylon-filament/: 0 products
+2026-10-27 10:36:08,139 [INFO] scrapers.plexiwire: [Plexiwire] Found 16 cards with 'div[class*="product"]'
+2026-10-27 10:36:08,145 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/nylon-cf-10-filament/: 0 products
+2026-10-27 10:36:17,806 [INFO] scrapers.plexiwire: [Plexiwire] Found 12 cards with 'div[class*="product"]'
+2026-10-27 10:36:17,810 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/samples/: 0 products
+2026-10-27 10:36:27,359 [INFO] scrapers.plexiwire: [Plexiwire] Found 54 cards with 'div[class*="product"]'
+2026-10-27 10:36:27,369 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/plexiwire-resin/: 0 products
+2026-10-27 10:36:36,847 [INFO] scrapers.plexiwire: [Plexiwire] Found 21 cards with 'div[class*="product"]'
+2026-10-27 10:36:36,852 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/basic-resin/: 0 products
+2026-10-27 10:36:46,469 [INFO] scrapers.plexiwire: [Plexiwire] Found 44 cards with 'div[class*="product"]'
+2026-10-27 10:36:46,475 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/model-resin/: 0 products
+2026-10-27 10:36:55,945 [INFO] scrapers.plexiwire: [Plexiwire] Found 24 cards with 'div[class*="product"]'
+2026-10-27 10:36:55,951 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/nabory/: 0 products
+2026-10-27 10:37:05,547 [INFO] scrapers.plexiwire: [Plexiwire] Found 23 cards with 'div[class*="product"]'
+2026-10-27 10:37:05,553 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/sets-for-3d-pens/: 0 products
+2026-10-27 10:37:15,162 [INFO] scrapers.plexiwire: [Plexiwire] Found 11 cards with 'div[class*="product"]'
+2026-10-27 10:37:15,166 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/trafareti-for-3d-pen/: 0 products
+2026-10-27 10:37:24,641 [INFO] scrapers.plexiwire: [Plexiwire] Found 11 cards with 'div[class*="product"]'
+2026-10-27 10:37:24,645 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/3d-printers/: 0 products
+2026-10-27 10:37:34,067 [INFO] scrapers.plexiwire: [Plexiwire] Found 11 cards with 'div[class*="product"]'
+2026-10-27 10:37:34,072 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/3d-printers-graber/: 0 products
+2026-10-27 10:37:43,514 [INFO] scrapers.plexiwire: [Plexiwire] Found 11 cards with 'div[class*="product"]'
+2026-10-27 10:37:43,519 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/3d-printers-klema/: 0 products
+2026-10-27 10:37:52,908 [INFO] scrapers.plexiwire: [Plexiwire] Found 11 cards with 'div[class*="product"]'
+2026-10-27 10:37:52,913 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/3d-pens/: 0 products
+2026-10-27 10:38:02,342 [INFO] scrapers.plexiwire: [Plexiwire] Found 13 cards with 'div[class*="product"]'
+2026-10-27 10:38:02,347 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua/accessories-for-3d-printing/: 0 products
+2026-10-27 10:38:11,970 [INFO] scrapers.plexiwire: [Plexiwire] Found 31 cards with 'div[class*="product"]'
+2026-10-27 10:38:11,977 [INFO] scrapers.plexiwire: [Plexiwire] https://shop.plexiwire.com.ua#special_offers_homepage-showcase-default-2: 0 products
+2026-10-27 10:38:12,043 [INFO] scrapers.plexiwire: [Plexiwire] Total products scraped: 0
+2026-10-27 10:38:12,043 [INFO] scrapers: [Plexiwire] Scraped 0 products
+2026-10-27 10:38:42,060 [INFO] scrapers.pochatok: [Pochatok] No cards on https://pochatok.ua/filament/, skipping
+2026-10-27 10:39:10,970 [INFO] scrapers.pochatok: [Pochatok] No cards on https://pochatok.ua/, skipping
+2026-10-27 10:39:11,036 [INFO] scrapers.pochatok: [Pochatok] Total products scraped: 0
+2026-10-27 10:39:11,036 [INFO] scrapers: [Pochatok] Scraped 0 products
+2026-10-27 10:39:11,480 [INFO] httpx: HTTP Request: GET https://ukr3d.com.ua "HTTP/1.1 200 OK"
+2026-10-27 10:39:11,481 [WARNING] scrapers.ukr3d: [UKR3D] No product cards found with any selector
+2026-10-27 10:39:11,481 [INFO] scrapers.ukr3d: [UKR3D] No products on page 1, stopping.
+2026-10-27 10:39:11,481 [INFO] scrapers.ukr3d: [UKR3D] Total products scraped: 0
+2026-10-27 10:39:11,481 [INFO] scrapers: [UKR3D] Scraped 0 products
+2026-10-27 11:24:48,750 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    prices = queries.get_latest_prices(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:24:48,931 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    prices = queries.get_latest_prices(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:24:52,478 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    prices = queries.get_latest_prices(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:24:52,613 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    prices = queries.get_latest_prices(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:24:54,061 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    prices = queries.get_latest_prices(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:24:55,195 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    prices = queries.get_latest_prices(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:24:56,263 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    prices = queries.get_latest_prices(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:24:56,400 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    prices = queries.get_latest_prices(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:24:57,728 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    prices = queries.get_latest_prices(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:24:58,041 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    prices = queries.get_latest_prices(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:25:00,846 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    prices = queries.get_latest_prices(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:25:01,664 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    prices = queries.get_latest_prices(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:25:10,302 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    prices = queries.get_latest_prices(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:25:15,772 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    prices = queries.get_latest_prices(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:25:17,028 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    prices = queries.get_latest_prices(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:25:17,676 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    prices = queries.get_latest_prices(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:25:19,078 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    prices = queries.get_latest_prices(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:25:20,009 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    prices = queries.get_latest_prices(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:25:27,923 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    )
+      
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:26:23,764 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    )
+      
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:26:27,509 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    )
+      
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:26:59,208 [INFO] scrapers.smart3d: [3D Smart] Total scraped: 73
+2026-10-27 11:26:59,208 [INFO] scrapers: [3D Smart] Scraped 73 products
+2026-10-27 11:26:59,362 [INFO] httpx: HTTP Request: GET https://3dplast.ua/filament-petg-124/ "HTTP/1.1 200 OK"
+2026-10-27 11:26:59,540 [INFO] httpx: HTTP Request: GET https://3dplast.ua/filament-pla-121/ "HTTP/1.1 200 OK"
+2026-10-27 11:26:59,709 [INFO] httpx: HTTP Request: GET https://3dplast.ua/filament-abs-126/ "HTTP/1.1 200 OK"
+2026-10-27 11:26:59,728 [INFO] scrapers.plast3d: [3D Plast] Total scraped: 41
+2026-10-27 11:26:59,728 [INFO] scrapers: [3DPlast] Scraped 41 products
+2026-10-27 11:26:59,877 [INFO] httpx: HTTP Request: GET https://3dplast.ua/filament-petg-124/ "HTTP/1.1 200 OK"
+2026-10-27 11:27:00,041 [INFO] httpx: HTTP Request: GET https://3dplast.ua/filament-pla-121/ "HTTP/1.1 200 OK"
+2026-10-27 11:27:00,287 [INFO] httpx: HTTP Request: GET https://3dplast.ua/filament-abs-126/ "HTTP/1.1 200 OK"
+2026-10-27 11:27:00,305 [INFO] scrapers.plast3d: [3D Plast] Total scraped: 41
+2026-10-27 11:27:00,305 [INFO] scrapers: [3DPlast] Scraped 41 products
+2026-10-27 11:27:04,822 [INFO] scrapers.daniparts: [DaniParts] Total scraped: 0
+2026-10-27 11:27:04,822 [INFO] scrapers: [Daniparts] Scraped 0 products
+2026-10-27 11:27:33,906 [INFO] scrapers.epic3d: [Epic3D] Total scraped: 43
+2026-10-27 11:27:33,906 [INFO] scrapers: [Epic3D] Scraped 43 products
+2026-10-27 11:28:02,094 [INFO] scrapers.filament_org: [Filament.org.ua] Total scraped: 38
+2026-10-27 11:28:02,094 [INFO] scrapers: [Filament.org.ua] Scraped 38 products
+2026-10-27 11:28:19,655 [INFO] scrapers.lbl_corp: [LBL Corp] Total scraped: 26
+2026-10-27 11:28:19,655 [INFO] scrapers: [LBL Corp] Scraped 26 products
+2026-10-27 11:28:20,314 [INFO] httpx: HTTP Request: GET https://monofilament.com.ua/ua/products/standartnye-materialy/copet/ "HTTP/1.1 200 OK"
+2026-10-27 11:28:21,097 [INFO] httpx: HTTP Request: GET https://monofilament.com.ua/ua/products/standartnye-materialy/pla/ "HTTP/1.1 200 OK"
+2026-10-27 11:28:21,650 [INFO] httpx: HTTP Request: GET https://monofilament.com.ua/ua/products/standartnye-materialy/abs/ "HTTP/1.1 200 OK"
+2026-10-27 11:28:22,138 [INFO] httpx: HTTP Request: GET https://monofilament.com.ua/ua/products/standartnye-materialy/abs-plus/ "HTTP/1.1 200 OK"
+2026-10-27 11:28:22,626 [INFO] httpx: HTTP Request: GET https://monofilament.com.ua/ua/products/inzhinernye-plastiki/ "HTTP/1.1 200 OK"
+2026-10-27 11:28:22,674 [INFO] scrapers.monofilament: [MonoFilament] Total scraped: 217
+2026-10-27 11:28:22,674 [INFO] scrapers: [MonoFilament] Scraped 217 products
+2026-10-27 11:28:44,933 [INFO] scrapers.plexiwire: [Plexiwire] Total scraped: 34
+2026-10-27 11:28:44,933 [INFO] scrapers: [Plexiwire] Scraped 34 products
+2026-10-27 11:29:20,580 [INFO] scrapers.pochatok: [Pochatok] Total scraped: 0
+2026-10-27 11:29:20,580 [INFO] scrapers: [Pochatok] Scraped 0 products
+2026-10-27 11:29:42,982 [INFO] scrapers.ukr3d: [UKR3D] Total scraped: 66
+2026-10-27 11:29:42,983 [INFO] scrapers: [UKR3D] Scraped 66 products
+2026-10-27 11:29:43,096 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    )
+      
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:38:30,710 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    )
+      
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 11:38:36,621 [ERROR] __main__: Tab 1 error
+Traceback (most recent call last):
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\app.py", line 70, in <module>
+    render_prices()
+  File "C:\Users\Asus\Desktop\121\FilamentMonitor\pages\tab1_prices.py", line 91, in render
+    )
+      
+TypeError: get_latest_prices() got an unexpected keyword argument 'color_search'
+2026-10-27 12:32:53,914 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost(None)
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost(None)>
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host

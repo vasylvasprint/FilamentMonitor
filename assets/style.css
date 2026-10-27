@@ -1,0 +1,106 @@
+/* FilamentMonitor — Custom Streamlit styles */
+
+/* Reduce default top padding */
+.block-container {
+    padding-top: 1rem !important;
+    padding-bottom: 2rem !important;
+}
+
+/* Tab headers */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 4px;
+}
+
+.stTabs [data-baseweb="tab"] {
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px 6px 0 0;
+}
+
+/* Progress bars — make them colorful */
+.stProgress > div > div > div {
+    border-radius: 10px;
+}
+
+/* Card containers */
+[data-testid="stVerticalBlock"] .stContainer {
+    border-radius: 8px;
+    transition: box-shadow 0.2s ease;
+}
+
+[data-testid="stVerticalBlock"] .stContainer:hover {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* Metric labels */
+[data-testid="stMetricLabel"] {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Buttons */
+.stButton > button {
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.15s ease;
+}
+
+.stButton > button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Warning style for low-stock */
+.low-stock-card {
+    border: 2px solid #ffaa00 !important;
+    background: rgba(255, 170, 0, 0.05);
+}
+
+.critical-stock-card {
+    border: 2px solid #ff4444 !important;
+    background: rgba(255, 68, 68, 0.05);
+}
+
+/* Table-like rows */
+.price-row {
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+    font-size: 0.9rem;
+}
+
+/* File uploader */
+[data-testid="stFileUploader"] {
+    border-radius: 8px;
+}
+
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* Expanders */
+[data-testid="stExpander"] {
+    border-radius: 8px;
+}
+
+/* Forms */
+[data-testid="stForm"] {
+    border-radius: 10px;
+    padding: 1rem;
+    background: rgba(128, 128, 128, 0.04);
+}
+
+/* Success/Error/Warning alerts */
+.stAlert {
+    border-radius: 8px;
+}
+
+/* Responsive text */
+@media (max-width: 768px) {
+    .block-container {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+}
