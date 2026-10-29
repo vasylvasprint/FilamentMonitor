@@ -49,6 +49,118 @@ WEIGHT_OPTIONS = [
     "Своя вага / залишок у грамах",
 ]
 
+# ── Color name → CSS color mapping ────────────────────────────────────────────
+# Covers Ukrainian, English, Russian keywords and common descriptors.
+_COLOR_MAP = {
+    # Ukrainian standard
+    "чорний": "#222222", "чорн": "#222222",
+    "білий": "#F5F5F5", "біл": "#F5F5F5",
+    "сірий": "#9E9E9E", "сір": "#9E9E9E",
+    "бежевий": "#D2B48C", "беж": "#D2B48C", "тілесний": "#D2B48C", "кремовий": "#D2B48C", "ivory": "#FFFFF0",
+    "червоний": "#E53935", "червон": "#E53935",
+    "синій": "#1E88E5", "син": "#1E88E5",
+    "зелений": "#43A047", "зелен": "#43A047",
+    "жовтий": "#FDD835", "жовт": "#FDD835",
+    "помаранчевий": "#FF9800", "помаранч": "#FF9800", "оранж": "#FF9800",
+    "фіолетовий": "#8E24AA", "фіолет": "#8E24AA",
+    "рожевий": "#EC407A", "рожев": "#EC407A",
+    "прозорий": "transparent", "прозор": "transparent", "натуральний": "transparent", "natural": "transparent",
+    "сріблястий": "#C0C0C0", "срібл": "#C0C0C0", "срібний": "#C0C0C0",
+    "золотий": "#FFD700", "золот": "#FFD700",
+    "коричневий": "#6D4C41", "коричнев": "#6D4C41",
+    "різнокольоровий": "conic-gradient(red,yellow,lime,aqua,blue,magenta,red)",
+    # English
+    "black": "#222222", "white": "#F5F5F5", "grey": "#9E9E9E", "gray": "#9E9E9E",
+    "red": "#E53935", "blue": "#1E88E5", "green": "#43A047", "yellow": "#FDD835",
+    "orange": "#FF9800", "purple": "#8E24AA", "violet": "#8E24AA", "pink": "#EC407A",
+    "silver": "#C0C0C0", "gold": "#FFD700", "brown": "#6D4C41", "beige": "#D2B48C",
+    "transparent": "transparent", "clear": "transparent",
+    "cyan": "#00BCD4", "teal": "#009688", "lime": "#CDDC39", "magenta": "#E91E63",
+    "maroon": "#800000", "navy": "#000080", "olive": "#808000", "coral": "#FF7F50",
+    "turquoise": "#40E0D0", "indigo": "#3F51B5", "ivory": "#FFFFF0", "khaki": "#F0E68C",
+    "crimson": "#DC143C", "aqua": "#00FFFF", "peach": "#FFDAB9",
+    # Russian
+    "черный": "#222222", "белый": "#F5F5F5", "серый": "#9E9E9E",
+    "красный": "#E53935", "синий": "#1E88E5", "зеленый": "#43A047",
+    "желтый": "#FDD835", "оранжевый": "#FF9800", "фиолетовый": "#8E24AA",
+    "розовый": "#EC407A", "серебристый": "#C0C0C0", "золотой": "#FFD700",
+    "коричневый": "#6D4C41", "бежевый": "#D2B48C",
+    # Modifiers that hint at a shade
+    "темно": None, "темн": None, "світло": None, "світл": None, "яскраво": None,
+    "dark": None, "light": None, "bright": None, "pale": None, "deep": None,
+}
+
+# Priority-ordered list for substring matching (longest first avoids partial hits)
+_COLOR_KEYS_SORTED = sorted(
+    [(k, v) for k, v in _COLOR_MAP.items() if v is not None],
+    key=lambda pair: -len(pair[0]),
+)
+
+
+def _color_name_to_css(color_name: str) -> Optional[str]:
+    """Attempt to derive a CSS colour value from a free-text colour name.
+
+    Returns a CSS colour string or None if nothing recognisable was found.
+    """
+    if not color_name:
+        return None
+    lower = color_name.lower().strip()
+
+    # 1. Direct hit in the map (full match)
+    if lower in _COLOR_MAP and _COLOR_MAP[lower] is not None:
+        return _COLOR_MAP[lower]
+
+    # 2. Substring search (longest keyword first)
+    for key, css in _COLOR_KEYS_SORTED:
+        if key in lower:
+            return css
+
+    return None
+
+
+def _render_color_dot(color_name: str, size: int = 28) -> str:
+    """Return an HTML snippet with a coloured circle indicator for *color_name*.
+
+    If the colour cannot be resolved, a neutral grey circle with a "?" is shown.
+    """
+    css_color = _color_name_to_css(color_name)
+
+    if css_color is None:
+        # Unknown colour – grey with "?"
+        return (
+            f"<span style='display:inline-block;width:{size}px;height:{size}px;"
+            f"border-radius:50%;background:#ccc;border:2px solid #999;vertical-align:middle;"
+            f"line-height:{size}px;text-align:center;font-size:{size//2}px;color:#555;'>"
+            f"?</span>"
+        )
+
+    if css_color == "transparent":
+        # Chequered transparency indicator
+        return (
+            f"<span style='display:inline-block;width:{size}px;height:{size}px;"
+            f"border-radius:50%;border:2px solid #aaa;vertical-align:middle;"
+            f"background:repeating-conic-gradient(#ddd 0% 25%, #fff 0% 50%) 50%/8px 8px;'>"
+            f"</span>"
+        )
+
+    if css_color.startswith("conic-gradient"):
+        # Rainbow / multicolour
+        return (
+            f"<span style='display:inline-block;width:{size}px;height:{size}px;"
+            f"border-radius:50%;border:2px solid #aaa;vertical-align:middle;"
+            f"background:{css_color};'>"
+            f"</span>"
+        )
+
+    # Solid colour
+    border = "#ddd" if css_color.upper() in ("#F5F5F5", "#FFFFF0") else css_color
+    return (
+        f"<span style='display:inline-block;width:{size}px;height:{size}px;"
+        f"border-radius:50%;background:{css_color};border:2px solid {border};"
+        f"vertical-align:middle;box-shadow:0 1px 4px rgba(0,0,0,0.18);'>"
+        f"</span>"
+    )
+
 
 def render():
     """Render the inventory management tab."""
@@ -107,8 +219,66 @@ def _render_summary():
     col4.metric("⚠️ Мало залишку (<150г)", len(low_stock))
 
 
+# ══════════════════════════════════════════════════════════════════════════════
+#  Grouping helpers
+# ══════════════════════════════════════════════════════════════════════════════
+
+def _group_key(spool: dict) -> tuple:
+    """Return the key used to group spools that should display in one row."""
+    return (
+        (spool.get("brand") or "").strip().lower(),
+        (spool.get("plastic_type") or "").strip().lower(),
+        (spool.get("color") or "").strip().lower(),
+    )
+
+
+def _build_groups(spools: list) -> list:
+    """Group spools by (brand, plastic_type, color) and produce summary dicts.
+
+    Each group dict has the combined weights, summed value, list of member
+    spool IDs, and a representative spool for display metadata.
+    """
+    from collections import OrderedDict
+
+    groups: OrderedDict = OrderedDict()
+    for sp in spools:
+        key = _group_key(sp)
+        if key not in groups:
+            groups[key] = {
+                "spools": [],
+                "total_current_g": 0,
+                "total_initial_g": 0,
+                "total_value": 0.0,
+            }
+        groups[key]["spools"].append(sp)
+        groups[key]["total_current_g"] += sp["current_weight_g"]
+        groups[key]["total_initial_g"] += sp["initial_weight_g"]
+        groups[key]["total_value"] += sp.get("purchase_price", 0) * (
+            sp["current_weight_g"] / max(sp["initial_weight_g"], 1)
+        )
+
+    result = []
+    for key, g in groups.items():
+        rep = g["spools"][0]  # representative spool for metadata
+        result.append({
+            "key": key,
+            "representative": rep,
+            "spools": g["spools"],
+            "count": len(g["spools"]),
+            "total_current_g": g["total_current_g"],
+            "total_initial_g": g["total_initial_g"],
+            "total_value": g["total_value"],
+            "min_current_g": min(s["current_weight_g"] for s in g["spools"]),
+        })
+    return result
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  Inventory view — grouped cards
+# ══════════════════════════════════════════════════════════════════════════════
+
 def _render_inventory_view():
-    """Render inventory cards with progress bars."""
+    """Render inventory cards grouped by (brand, plastic_type, color)."""
     col1, col2 = st.columns(2)
     with col1:
         status_filter_display = st.multiselect(
@@ -131,27 +301,33 @@ def _render_inventory_view():
         st.info("Не знайдено котушок за обраними фільтрами.")
         return
 
-    # Sort: critical first, then low, then normal
-    spools.sort(key=lambda s: (
-        0 if s["current_weight_g"] < CRITICAL_STOCK_ALERT_G
-        else 1 if s["current_weight_g"] < LOW_STOCK_ALERT_G
+    groups = _build_groups(spools)
+
+    # Sort: critical first (by minimum spool weight in group)
+    groups.sort(key=lambda g: (
+        0 if g["min_current_g"] < CRITICAL_STOCK_ALERT_G
+        else 1 if g["min_current_g"] < LOW_STOCK_ALERT_G
         else 2
     ))
 
     cols = st.columns(2)
-    for i, spool in enumerate(spools):
+    for i, group in enumerate(groups):
         with cols[i % 2]:
-            _render_spool_card(spool)
+            _render_group_card(group)
 
 
-def _render_spool_card(spool: dict):
-    """Render a single spool card with progress bar and action buttons."""
-    current_g = spool["current_weight_g"]
-    initial_g = spool["initial_weight_g"]
-    pct = min(100.0, (current_g / max(initial_g, 1)) * 100)
+def _render_group_card(group: dict):
+    """Render a single grouped card representing 1+ spools with the same brand/type/color."""
+    rep = group["representative"]
+    count = group["count"]
+    total_current_g = group["total_current_g"]
+    total_initial_g = group["total_initial_g"]
+    min_g = group["min_current_g"]
 
-    is_critical = current_g < CRITICAL_STOCK_ALERT_G
-    is_low = current_g < LOW_STOCK_ALERT_G
+    pct = min(100.0, (total_current_g / max(total_initial_g, 1)) * 100)
+
+    is_critical = min_g < CRITICAL_STOCK_ALERT_G
+    is_low = min_g < LOW_STOCK_ALERT_G
 
     if is_critical:
         alert_icon = "🔴"
@@ -160,115 +336,145 @@ def _render_spool_card(spool: dict):
     else:
         alert_icon = "🟢"
 
-    plastic_type = spool.get("plastic_type", "?")
-    color = spool.get("color", "")
-    brand = spool.get("brand", "")
-    hardness = spool.get("hardness", "")
-    store = spool.get("store_name", "")
-    price = spool.get("purchase_price", 0)
-    status = SPOOL_STATUSES.get(spool.get("status", "active"), "В роботі")
-    spool_id = spool["id"]
+    plastic_type = rep.get("plastic_type", "?")
+    color = rep.get("color", "") or ""
+    brand = rep.get("brand", "") or ""
+    hardness = rep.get("hardness", "")
 
     type_display = plastic_type
     if hardness and hardness != "Невідомо" and hardness != "—":
         type_display += f" {hardness}"
 
-    title = f"{alert_icon} {type_display}"
+    # Build title line
+    color_dot = _render_color_dot(color, size=24)
+    qty_badge = f"<span style='background:#1f77b4;color:#fff;border-radius:12px;padding:2px 9px;font-size:0.82rem;font-weight:700;margin-left:6px;'>{count} шт</span>" if count > 1 else ""
+    title_html = f"{color_dot}&nbsp; {alert_icon} <b>{type_display}</b>"
     if color:
-        title += f" — {color}"
+        title_html += f" — {color}"
     if brand:
-        title += f" ({brand})"
+        title_html += f" <span style='opacity:0.7;'>({brand})</span>"
+    title_html += qty_badge
 
     with st.container(border=True):
-        st.markdown(f"**{title}**")
-        if store:
-            st.caption(f"📍 {store}")
+        st.markdown(title_html, unsafe_allow_html=True)
 
-        st.progress(pct / 100, text=f"{current_g} г / {initial_g} г ({pct:.0f}%)")
-        st.caption(f"Ціна покупки: {price:.0f} ₴ | Статус: {status} | ID: #{spool_id}")
+        total_kg_display = total_current_g / 1000.0
+        st.progress(pct / 100, text=f"{total_current_g} г ({total_kg_display:.2f} кг) / {total_initial_g} г ({pct:.0f}%)")
+
+        value_display = group["total_value"]
+        st.caption(f"💰 Залишкова вартість: {value_display:.0f} ₴")
 
         if is_low:
-            st.warning(f"⚠️ Залишок < {LOW_STOCK_ALERT_G} г!")
+            st.warning(f"⚠️ Одна з котушок має залишок < {LOW_STOCK_ALERT_G} г!")
             if st.button(
                 "🔍 Перевірити актуальні ціни на цей пластик",
-                key=f"check_prices_{spool_id}",
+                key=f"check_prices_grp_{'_'.join(str(x) for x in group['key'])}",
                 use_container_width=True,
             ):
                 st.session_state["price_filter_type"] = plastic_type
                 st.session_state["active_tab"] = 0
                 st.rerun()
 
-        action_col1, action_col2, action_col3 = st.columns(3)
+        # Expandable detail section showing individual spools
+        with st.expander(f"📋 Деталі ({count} {'котушка' if count == 1 else 'котушок'})", expanded=False):
+            for sp in group["spools"]:
+                _render_individual_spool(sp)
 
-        with action_col1:
-            if st.button("⚖️ Зважити", key=f"weigh_{spool_id}", use_container_width=True):
-                st.session_state[f"weighing_{spool_id}"] = True
 
-        with action_col2:
-            status_options = list(SPOOL_STATUSES.values())
-            current_status_display = SPOOL_STATUSES.get(spool.get("status", "active"), "В роботі")
-            new_status_display = st.selectbox(
-                "Статус",
-                options=status_options,
-                index=status_options.index(current_status_display) if current_status_display in status_options else 0,
-                key=f"status_sel_{spool_id}",
-                label_visibility="collapsed",
+def _render_individual_spool(spool: dict):
+    """Render a compact inline view for a single spool inside a group expander."""
+    spool_id = spool["id"]
+    current_g = spool["current_weight_g"]
+    initial_g = spool["initial_weight_g"]
+    pct = min(100.0, (current_g / max(initial_g, 1)) * 100)
+    status = SPOOL_STATUSES.get(spool.get("status", "active"), "В роботі")
+    store = spool.get("store_name", "")
+    price = spool.get("purchase_price", 0)
+
+    st.markdown(f"**ID #{spool_id}** — {current_g} г / {initial_g} г ({pct:.0f}%) | {status} | {price:.0f} ₴{f' | 📍 {store}' if store else ''}")
+
+    action_col1, action_col2, action_col3 = st.columns(3)
+
+    with action_col1:
+        if st.button("⚖️ Зважити", key=f"weigh_{spool_id}", use_container_width=True):
+            st.session_state[f"weighing_{spool_id}"] = True
+
+    with action_col2:
+        status_options = list(SPOOL_STATUSES.values())
+        current_status_display = SPOOL_STATUSES.get(spool.get("status", "active"), "В роботі")
+        new_status_display = st.selectbox(
+            "Статус",
+            options=status_options,
+            index=status_options.index(current_status_display) if current_status_display in status_options else 0,
+            key=f"status_sel_{spool_id}",
+            label_visibility="collapsed",
+        )
+        if new_status_display != current_status_display:
+            status_reverse = {v: k for k, v in SPOOL_STATUSES.items()}
+            queries.update_spool_status(spool_id, status_reverse[new_status_display])
+            st.rerun()
+
+    with action_col3:
+        if st.button("🗑️ Видалити", key=f"del_{spool_id}", use_container_width=True):
+            st.session_state[f"confirm_del_{spool_id}"] = True
+
+    # Weigh modal
+    if st.session_state.get(f"weighing_{spool_id}"):
+        with st.form(key=f"weigh_form_{spool_id}"):
+            st.subheader("⚖️ Швидка інвентаризація на вагах")
+            empty_g = spool.get("empty_spool_weight_g", DEFAULT_EMPTY_SPOOL_G)
+            gross_g = st.number_input(
+                "Загальна вага котушки з вагів (брутто, г)",
+                min_value=0,
+                value=int(current_g + empty_g),
+                step=1,
+                help=f"Введіть вагу з кухонних ваг. Програма автоматично відніме вагу тари ({empty_g} г).",
             )
-            if new_status_display != current_status_display:
-                status_reverse = {v: k for k, v in SPOOL_STATUSES.items()}
-                queries.update_spool_status(spool_id, status_reverse[new_status_display])
+            net_g = max(0, gross_g - empty_g)
+            st.info(f"Чистий залишок пластику: **{net_g} г** (брутто {gross_g} г − тара {empty_g} г)")
+
+            col_ok, col_cancel = st.columns(2)
+            with col_ok:
+                if st.form_submit_button("✅ Оновити залишок", use_container_width=True):
+                    queries.update_spool_weight(spool_id, net_g)
+                    st.session_state[f"weighing_{spool_id}"] = False
+                    st.success(f"Залишок оновлено: {net_g} г")
+                    st.rerun()
+            with col_cancel:
+                if st.form_submit_button("❌ Скасувати", use_container_width=True):
+                    st.session_state[f"weighing_{spool_id}"] = False
+                    st.rerun()
+
+    # Delete confirmation
+    if st.session_state.get(f"confirm_del_{spool_id}"):
+        plastic_type = spool.get("plastic_type", "?")
+        hardness = spool.get("hardness", "")
+        type_display = plastic_type
+        if hardness and hardness != "Невідомо" and hardness != "—":
+            type_display += f" {hardness}"
+        st.error(f"Видалити котушку «{type_display}»? Цю дію неможливо скасувати.")
+        dc1, dc2 = st.columns(2)
+        with dc1:
+            if st.button("Так, видалити", key=f"del_yes_{spool_id}", use_container_width=True):
+                queries.delete_spool(spool_id)
+                st.session_state[f"confirm_del_{spool_id}"] = False
+                st.rerun()
+        with dc2:
+            if st.button("Скасувати", key=f"del_no_{spool_id}", use_container_width=True):
+                st.session_state[f"confirm_del_{spool_id}"] = False
                 st.rerun()
 
-        with action_col3:
-            if st.button("🗑️ Видалити", key=f"del_{spool_id}", use_container_width=True):
-                st.session_state[f"confirm_del_{spool_id}"] = True
+    st.markdown("<hr style='margin:8px 0;border:none;border-top:1px solid rgba(128,128,128,0.15);'>", unsafe_allow_html=True)
 
-        # Weigh modal
-        if st.session_state.get(f"weighing_{spool_id}"):
-            with st.form(key=f"weigh_form_{spool_id}"):
-                st.subheader("⚖️ Швидка інвентаризація на вагах")
-                empty_g = spool.get("empty_spool_weight_g", DEFAULT_EMPTY_SPOOL_G)
-                gross_g = st.number_input(
-                    "Загальна вага котушки з вагів (брутто, г)",
-                    min_value=0,
-                    value=int(current_g + empty_g),
-                    step=1,
-                    help=f"Введіть вагу з кухонних ваг. Програма автоматично відніме вагу тари ({empty_g} г).",
-                )
-                net_g = max(0, gross_g - empty_g)
-                st.info(f"Чистий залишок пластику: **{net_g} г** (брутто {gross_g} г − тара {empty_g} г)")
 
-                col_ok, col_cancel = st.columns(2)
-                with col_ok:
-                    if st.form_submit_button("✅ Оновити залишок", use_container_width=True):
-                        queries.update_spool_weight(spool_id, net_g)
-                        st.session_state[f"weighing_{spool_id}"] = False
-                        st.success(f"Залишок оновлено: {net_g} г")
-                        st.rerun()
-                with col_cancel:
-                    if st.form_submit_button("❌ Скасувати", use_container_width=True):
-                        st.session_state[f"weighing_{spool_id}"] = False
-                        st.rerun()
-
-        # Delete confirmation
-        if st.session_state.get(f"confirm_del_{spool_id}"):
-            st.error(f"Видалити котушку «{type_display}»? Цю дію неможливо скасувати.")
-            dc1, dc2 = st.columns(2)
-            with dc1:
-                if st.button("Так, видалити", key=f"del_yes_{spool_id}", use_container_width=True):
-                    queries.delete_spool(spool_id)
-                    st.session_state[f"confirm_del_{spool_id}"] = False
-                    st.rerun()
-            with dc2:
-                if st.button("Скасувати", key=f"del_no_{spool_id}", use_container_width=True):
-                    st.session_state[f"confirm_del_{spool_id}"] = False
-                    st.rerun()
-
+# ══════════════════════════════════════════════════════════════════════════════
+#  Add Spool form — free text color input
+# ══════════════════════════════════════════════════════════════════════════════
 
 def _render_add_spool_tab():
-    """Render fast constructor with selectboxes and batch table editor."""
+    """Render fast constructor with selectboxes and free-text color input."""
     st.subheader("⚡ Швидкий конструктор котушки (в один клік)")
-    st.caption("Всі параметри обираються зі зручних випадаючих списків без необхідності ручного введення тексту:")
+    st.caption("Оберіть параметри з випадаючих списків, а колір введіть як завгодно — довільним текстом:")
 
     # ──────────────────────────────────────────────────────────────────────────
     # Mode 1: Fast Single / Multi-spool Constructor
@@ -289,11 +495,21 @@ def _render_add_spool_tab():
             else:
                 actual_brand = brand_choice
 
-            color_choice = st.selectbox(
+            # Free-text color input with live preview
+            color_input = st.text_input(
                 "Колір *",
-                options=STANDARD_COLORS,
-                index=0,
-                key="c_color_choice",
+                value="Чорний",
+                key="c_color_input",
+                placeholder="напр.: темно-зелений, кришталево-прозорий, sky blue",
+            )
+            color_choice = color_input.strip() if color_input.strip() else "Чорний"
+
+            # Live colour preview
+            dot_html = _render_color_dot(color_choice, size=22)
+            st.markdown(
+                f"<div style='margin-top:-8px;margin-bottom:8px;'>"
+                f"{dot_html} <span style='font-size:0.85rem;opacity:0.7;'>Попередній перегляд кольору</span></div>",
+                unsafe_allow_html=True,
             )
 
         with col2:
@@ -404,7 +620,8 @@ def _render_add_spool_tab():
     st.subheader("⚡ Швидке додавання списком (Таблиця)")
     st.caption(
         "Наклікайте зі списків у таблиці одразу 5-10 різних видів пластику, які вже лежать у вас вдома, "
-        "та збережіть весь список однією кнопкою (кнопка «+» внизу таблиці додає новий рядок):"
+        "та збережіть весь список однією кнопкою (кнопка «+» внизу таблиці додає новий рядок). "
+        "Колір можна ввести будь-який текст:"
     )
 
     if "batch_inventory_df" not in st.session_state:
@@ -423,7 +640,7 @@ def _render_add_spool_tab():
             "Бренд": st.column_config.SelectboxColumn("Бренд", options=POPULAR_BRANDS, required=True),
             "Тип": st.column_config.SelectboxColumn("Тип", options=["PETG", "CoPE", "PLA", "TPU", "ABS", "ASA", "Nylon", "PCTG"], required=True),
             "Твердість TPU": st.column_config.SelectboxColumn("Твердість TPU", options=["—", "95A", "90A", "85A", "40D"]),
-            "Колір": st.column_config.SelectboxColumn("Колір", options=STANDARD_COLORS, required=True),
+            "Колір": st.column_config.TextColumn("Колір", help="Введіть будь-який колір вручну, наприклад: темно-зелений", required=True),
             "Вага 1 шт (г)": st.column_config.NumberColumn("Вага 1 шт (г)", min_value=50, max_value=5000, step=50, required=True),
             "Кількість котушок": st.column_config.NumberColumn("Кількість котушок", min_value=1, max_value=50, step=1, required=True),
             "Ціна (₴)": st.column_config.NumberColumn("Ціна (₴)", min_value=0.0, step=10.0, required=True),
