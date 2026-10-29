@@ -6,6 +6,7 @@ import streamlit as st
 
 from config import PLASTIC_TYPES, TPU_HARDNESS, STANDARD_COLORS
 from db import queries
+from db.colors import render_color_badge
 from scrapers import run_scraper
 from scrapers.utils import clean_url
 
@@ -223,7 +224,7 @@ def _render_price_table(df: pd.DataFrame):
         )
         r_cols[1].markdown(name_html, unsafe_allow_html=True)
         r_cols[2].markdown(f"**{ptype}**")
-        r_cols[3].text(color)
+        r_cols[3].markdown(render_color_badge(color, size=16, show_text=True), unsafe_allow_html=True)
         r_cols[4].text(weight_str)
         r_cols[5].markdown(price_str)
         r_cols[6].markdown(ppkg_str, unsafe_allow_html=True)

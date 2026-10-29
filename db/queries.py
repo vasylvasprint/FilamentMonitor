@@ -173,22 +173,90 @@ def get_last_scrape_time() -> Optional[str]:
     return str(row["t"]) if row and row["t"] else None
 
 
+def get_custom_colors() -> List[str]:
+    """Retrieve all user-saved custom colors from the database."""
+    conn = get_connection()
+    try:
+        rows = conn.execute("SELECT name FROM custom_colors ORDER BY name ASC").fetchall()
+        return [r["name"] for r in rows if r.get("name")]
+    except Exception:
+        return []
+    finally:
+        conn.close()
+
+
+def add_custom_color(name: str, hex_code: Optional[str] = None) -> None:
+    """Save a user-defined custom color to the database."""
+    if not name or not name.strip() or name.strip() in ("—", "nan"):
+        return
+    clean_name = name.strip()
+    conn = get_connection()
+    try:
+        if is_postgres():
+            conn.execute(
+                """INSERT INTO custom_colors (name, hex_code)
+                   VALUES (:name, :hex_code)
+                   ON CONFLICT (name) DO NOTHING""",
+                {"name": clean_name, "hex_code": hex_code},
+            )
+        else:
+            conn.execute(
+                """INSERT OR IGNORE INTO custom_colors (name, hex_code)
+                   VALUES (?, ?)""",
+                (clean_name, hex_code),
+            )
+        conn.commit()
+    except Exception:
+        pass
+    finally:
+        conn.close()
+
+
 def get_distinct_colors() -> List[str]:
-    """Get all existing distinct normalized colors from DB."""
+    """Get all existing distinct normalized colors from DB (snapshots, inventory, custom_colors)."""
     from config import STANDARD_COLORS
     conn = get_connection()
-    rows = conn.execute(
-        "SELECT DISTINCT color FROM price_snapshots WHERE color IS NOT NULL AND color != 'nan' ORDER BY color"
-    ).fetchall()
+    db_colors = set()
+    
+    # 1. From price_snapshots
+    try:
+        rows = conn.execute(
+            "SELECT DISTINCT color FROM price_snapshots WHERE color IS NOT NULL AND color != 'nan' AND color != '—'"
+        ).fetchall()
+        for r in rows:
+            if r.get("color") and r["color"].strip():
+                db_colors.add(r["color"].strip())
+    except Exception:
+        pass
+
+    # 2. From inventory spools
+    try:
+        rows_inv = conn.execute(
+            "SELECT DISTINCT color FROM inventory WHERE color IS NOT NULL AND color != 'nan' AND color != '—'"
+        ).fetchall()
+        for r in rows_inv:
+            if r.get("color") and r["color"].strip():
+                db_colors.add(r["color"].strip())
+    except Exception:
+        pass
+
+    # 3. From custom_colors table
+    try:
+        rows_cust = conn.execute("SELECT name FROM custom_colors").fetchall()
+        for r in rows_cust:
+            if r.get("name") and r["name"].strip():
+                db_colors.add(r["name"].strip())
+    except Exception:
+        pass
+
     conn.close()
-    db_colors = set(r["color"] for r in rows if r["color"] and r["color"].strip())
-    result = [c for c in STANDARD_COLORS if c in db_colors]
+
+    # Build final sorted list: popular standard colors first, followed by custom/inventory colors
+    result = [c for c in STANDARD_COLORS]
     for c in sorted(db_colors):
-        if c not in result and c != "—":
+        if c not in result and c not in ("—", "Не вказано", "nan"):
             result.append(c)
-    if "—" in db_colors or "Не вказано" in db_colors:
-        if "Не вказано" not in result:
-            result.append("Не вказано")
+
     return result
 
 

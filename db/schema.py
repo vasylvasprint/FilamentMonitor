@@ -91,6 +91,15 @@ def init_db() -> None:
             );
         """)
 
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS custom_colors (
+                id           SERIAL PRIMARY KEY,
+                name         VARCHAR(100) NOT NULL UNIQUE,
+                hex_code     VARCHAR(50),
+                created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+        """)
+
         # Seed stores
         for store in DEFAULT_STORES:
             conn.execute(
@@ -201,6 +210,15 @@ def init_db() -> None:
                 label        TEXT,
                 added_at     DATETIME DEFAULT CURRENT_TIMESTAMP,
                 last_scraped DATETIME
+            )
+        """)
+
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS custom_colors (
+                id           INTEGER PRIMARY KEY AUTOINCREMENT,
+                name         TEXT NOT NULL UNIQUE,
+                hex_code     TEXT,
+                created_at   DATETIME DEFAULT CURRENT_TIMESTAMP
             )
         """)
 

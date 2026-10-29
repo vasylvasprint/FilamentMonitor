@@ -17,8 +17,8 @@ MAX_WEIGHT_G = 1250  # Upper threshold to include nominal 1kg / 1.18-1.2kg spool
 DEFAULT_EMPTY_SPOOL_G = 200
 
 # Low-stock alert threshold in grams
-LOW_STOCK_ALERT_G = 150
-CRITICAL_STOCK_ALERT_G = 50
+LOW_STOCK_ALERT_G = 200
+CRITICAL_STOCK_ALERT_G = 100
 
 # Plastic types
 PLASTIC_TYPES = ["PETG", "TPU", "PLA", "ABS", "ASA", "Nylon", "CoPE", "PCTG", "Flex"]
